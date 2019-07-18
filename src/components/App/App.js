@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { fetchAccessToken } from '../../actions/actionCreators';
+import Main from '../Main/Main';
 
-const App = () => {
-  return <h1>App</h1>;
+const App = props => {
+  useEffect(() => {
+    props.fetchAccessToken();
+  }, []);
+
+  return (
+    <Fragment>
+      <Main />
+    </Fragment>
+  );
 };
 
-export default App;
+export default connect(
+  undefined,
+  { fetchAccessToken }
+)(App);
