@@ -1,14 +1,17 @@
 import React, { useEffect, Fragment } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchRandomDogs } from '../../actions/actionCreators';
 import { getAccessToken } from '../../reducers/rootReducer';
 
 const Main = props => {
+  const dispatch = useDispatch();
+  const token = useSelector(state => getAccessToken(state));
+
   useEffect(() => {
-    if (props.token) {
-      props.fetchRandomDogs();
+    if (token) {
+      dispatch(fetchRandomDogs());
     }
-  }, [props.token]);
+  }, [token]);
 
   return (
     <Fragment>
@@ -17,11 +20,4 @@ const Main = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  token: getAccessToken(state)
-});
-
-export default connect(
-  mapStateToProps,
-  { fetchRandomDogs }
-)(Main);
+export default Main;
