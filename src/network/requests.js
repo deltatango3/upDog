@@ -20,6 +20,9 @@ export const getAnimals = token => {
   return axios({
     url: urls.randomDogs,
     method: `get`,
+    params: {
+      type: 'dog'
+    },
     headers: {
       Authorization: 'Bearer ' + token
     }
