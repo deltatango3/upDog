@@ -5,10 +5,7 @@ import PetCard from '../PetCard/PetCard';
 const styles = makeStyles({
   gallery: {
     display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    maxWidth: 'calc(1200px + 4rem)',
-    padding: '0 2rem'
+    flexWrap: 'wrap'
   }
 });
 
