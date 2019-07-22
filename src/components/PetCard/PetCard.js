@@ -5,14 +5,13 @@ import {
   CardContent,
   Typography,
   CardMedia,
-  Grid,
-  IconButton
+  Grid
 } from '@material-ui/core';
 
 const styles = makeStyles(theme => ({
   card: {
     flex: '1 0 calc(300px - 1rem)',
-    margin: '.5rem 0 .5rem 1rem',
+    margin: '.5rem 1rem .5rem 0rem',
     '&:nth-child(4n)': {
       marginRight: '0'
     },
@@ -37,10 +36,10 @@ const PetCard = props => {
 
   return (
     <Card className={classes.card}>
-      <CardMedia className={classes.image} image={photo} component="img" />
+      <CardMedia className={classes.image} image={photo} component='img' />
       <CardContent>
-        <Grid container justify="space-between" direction="column">
-          <Typography variant="h6">{props.pet.name}</Typography>
+        <Grid container justify='space-between' direction='column'>
+          <Typography variant='h6'>{props.pet.name}</Typography>
           <Typography>
             {props.pet.age} {props.pet.gender}
           </Typography>

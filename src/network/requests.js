@@ -2,6 +2,10 @@ import axios from 'axios';
 import config from './config';
 import urls from './urls';
 
+const DEFAULT_PARAMETERS = {
+  type: 'dog'
+};
+
 export const getToken = () => {
   return axios({
     url: `https://api.petfinder.com/v2/oauth2/token`,
@@ -18,11 +22,22 @@ export const getToken = () => {
 
 export const getAnimals = token => {
   return axios({
-    url: urls.randomDogs,
+    url: urls.pets,
     method: `get`,
     params: {
       type: 'dog'
     },
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
+};
+
+export const apiFetchPets = (token, parameters = DEFAULT_PARAMETERS) => {
+  return axios({
+    url: urls.pets,
+    method: `get`,
+    params: parameters,
     headers: {
       Authorization: 'Bearer ' + token
     }
