@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/styles';
 import theme from '../../styles/globalStyles';
 import { fetchAccessToken } from '../../actions/actionCreators';
 import Main from '../Main/Main';
+import Routes from '../../routes/routes';
 
 const styles = makeStyles({
   wrapper: {
@@ -23,14 +26,18 @@ const App = props => {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <div className={classes.wrapper}>
-        <Main />
+        {/* <Main /> */}
+        <Routes />
       </div>
     </ThemeProvider>
   );
 };
 
-export default connect(
-  undefined,
-  { fetchAccessToken }
-)(App);
+export default withRouter(
+  connect(
+    undefined,
+    { fetchAccessToken }
+  )(App)
+);

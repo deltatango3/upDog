@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchRandomDogs, fetchPets } from '../../actions/actionCreators';
+import { fetchPets } from '../../actions/actionCreators';
 import { getAccessToken, getPets } from '../../reducers/rootReducer';
 import Gallery from '../Gallery/Gallery';
 import SearchFilterBar from '../SearchFilterBar/SearchFilterBar';
@@ -14,7 +14,8 @@ const styles = makeStyles({
   }
 });
 
-const Main = () => {
+const Main = props => {
+  console.log(props.history);
   const classes = styles();
   const dispatch = useDispatch();
   const token = useSelector(state => getAccessToken(state));
@@ -29,7 +30,7 @@ const Main = () => {
   return (
     <div className={classes.wrapper}>
       <SearchFilterBar />
-      <Gallery pets={pets} />
+      <Gallery pets={pets} history={props.history} />
     </div>
   );
 };

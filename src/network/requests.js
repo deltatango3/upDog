@@ -43,3 +43,13 @@ export const apiFetchPets = (token, parameters = DEFAULT_PARAMETERS) => {
     }
   });
 };
+
+export const apiFetchPet = (token, id) => {
+  return axios({
+    url: urls.pet(id),
+    method: `get`,
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
+};

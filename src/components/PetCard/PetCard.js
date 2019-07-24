@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   CardMedia,
   Grid
 } from '@material-ui/core';
+import { fetchPet } from '../../actions/actionCreators';
 
 const styles = makeStyles(theme => ({
   card: {
@@ -28,14 +30,19 @@ const styles = makeStyles(theme => ({
 }));
 
 const PetCard = props => {
+  const dispatch = useDispatch();
   const classes = styles();
   const photo =
     props.pet.photos.length > 0
       ? props.pet.photos[0].large
       : `https://via.placeholder.com/150`;
 
+  const onPetCardClick = () => {
+    dispatch(fetchPet(props.pet.id, props.history));
+  };
+
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} onClick={onPetCardClick}>
       <CardMedia className={classes.image} image={photo} component='img' />
       <CardContent>
         <Grid container justify='space-between' direction='column'>
