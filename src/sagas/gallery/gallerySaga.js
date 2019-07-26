@@ -22,7 +22,6 @@ function* fetchPet(action) {
     const response = yield call(apiFetchPet, token, action.data);
     const pet = response.data.animal;
     yield put(setPet(pet));
-    yield call(action.history.push, ROUTE_URLS.PET, pet.id);
   } catch (error) {
     console.log(error.message);
   }

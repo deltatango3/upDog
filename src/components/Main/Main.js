@@ -15,7 +15,6 @@ const styles = makeStyles({
 });
 
 const Main = props => {
-  console.log(props.history);
   const classes = styles();
   const dispatch = useDispatch();
   const token = useSelector(state => getAccessToken(state));

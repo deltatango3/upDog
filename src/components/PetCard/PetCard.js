@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   CardMedia,
   Grid
 } from '@material-ui/core';
-import { fetchPet } from '../../actions/actionCreators';
+import ROUTE_URLS from '../../routes/routeUrls';
 
 const styles = makeStyles(theme => ({
   card: {
@@ -30,7 +30,6 @@ const styles = makeStyles(theme => ({
 }));
 
 const PetCard = props => {
-  const dispatch = useDispatch();
   const classes = styles();
   const photo =
     props.pet.photos.length > 0
@@ -38,7 +37,7 @@ const PetCard = props => {
       : `https://via.placeholder.com/150`;
 
   const onPetCardClick = () => {
-    dispatch(fetchPet(props.pet.id, props.history));
+    props.history.push(`${ROUTE_URLS.PET}/${props.pet.id}`, props.pet.id);
   };
 
   return (
