@@ -10,13 +10,16 @@ export const setPets = data => ({
   data
 });
 
-export const fetchPet = (data, history) => ({
+export const fetchPet = data => ({
   type: actions.FETCH_PET,
-  data,
-  history
+  data
 });
 
 export const setPet = data => ({
   type: actions.SET_PET,
   data
+});
+
+export const clearPet = () => ({
+  type: actions.CLEAR_PET
 });

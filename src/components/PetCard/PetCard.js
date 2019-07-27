@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -36,8 +35,8 @@ const PetCard = props => {
       ? props.pet.photos[0].large
       : `https://via.placeholder.com/150`;
 
-  const onPetCardClick = () => {
-    props.history.push(`${ROUTE_URLS.PET}/${props.pet.id}`, props.pet.id);
+  const onPetCardClick = async () => {
+    props.history.push(`${ROUTE_URLS.PET}/${props.pet.id}`);
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import ROUTE_URLS from './routeUrls';
 import Main from '../components/Main/Main';
 import Pet from '../components/Pet/Pet';

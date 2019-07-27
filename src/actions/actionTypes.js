@@ -5,7 +5,8 @@ const actions = {
   FETCH_PETS: 'FETCH_PETS',
   SET_PETS: 'SET_PETS',
   FETCH_PET: 'FETCH_PET',
-  SET_PET: 'SET_PET'
+  SET_PET: 'SET_PET',
+  CLEAR_PET: 'CLEAR_PET'
 };
 
 export default actions;

@@ -1,22 +1,51 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchPet } from '../../actions/actionCreators';
+import React, { useEffect, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPet } from '../../reducers/rootReducer';
+import { fetchPet, clearPet } from '../../actions/actionCreators';
 
-const Pet = props => {
+const Pet = () => {
   const dispatch = useDispatch();
-  const idFromGallery = props.history.location.state;
+  const pet = useSelector(state => getPet(state));
 
-  const getIdFromPath = () => {
-    // do something to parse path for ID. After the /.
+  const getIdEnteredByUser = () => {
+    const path = window.location.pathname;
+    const splitPath = path.split('/');
+    const id = splitPath[2];
+    return id;
   };
 
-  const petId = idFromGallery ? idFromGallery : getIdFromPath();
-
   useEffect(() => {
-    dispatch(fetchPet(petId));
-  }, []);
+    dispatch(fetchPet(getIdEnteredByUser()));
+    return () => {
+      dispatch(clearPet());
+    };
+  }, [dispatch]);
 
-  return <h1>Pet Page</h1>;
+  console.log(pet);
+
+  const getBreed = () => {
+    if (pet.breeds.secondary) {
+      return `${pet.breeds.primary} & ${pet.breeds.secondary}`;
+    }
+    return pet.breeds.primary;
+  };
+
+  return (
+    <Fragment>
+      <div>
+        {pet.contact.address.city}
+        {pet.contact.address.state}
+        {pet.contact.email}
+        {pet.contact.phone}
+      </div>
+      <div>
+        {pet.name}
+        {pet.gender}
+        {pet.size}
+        {getBreed()}
+      </div>
+    </Fragment>
+  );
 };
 
 export default Pet;

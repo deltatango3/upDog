@@ -24,7 +24,7 @@ const Main = props => {
     if (token) {
       dispatch(fetchPets());
     }
-  }, [token]);
+  }, [token, dispatch]);
 
   return (
     <div className={classes.wrapper}>

@@ -3,7 +3,6 @@ import { apiFetchPets, apiFetchPet } from '../../network/requests';
 import actions from '../../actions/actionTypes';
 import { setPets, setPet } from '../../actions/actionCreators';
 import { getAccessToken } from '../../reducers/rootReducer';
-import ROUTE_URLS from '../../routes/routeUrls';
 
 function* fetchPets(action) {
   try {

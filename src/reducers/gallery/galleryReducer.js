@@ -1,8 +1,25 @@
 import actions from '../../actions/actionTypes';
 
+const DEFAULT_PET = {
+  contact: {
+    address: {
+      city: '',
+      state: ''
+    },
+    emai: '',
+    phone: ''
+  },
+  name: '',
+  breeds: {
+    primary: '',
+    secondary: '',
+    mixed: false
+  }
+};
+
 const defaultGalleryState = {
   pets: [],
-  pet: {},
+  pet: DEFAULT_PET,
   location: ''
 };
 
@@ -12,6 +29,8 @@ const galleryReducer = (state = defaultGalleryState, action) => {
       return { ...state, pets: action.data };
     case actions.SET_PET:
       return { ...state, pet: action.data };
+    case actions.CLEAR_PET:
+      return { ...state, pet: DEFAULT_PET };
     case actions.SET_SEARCH_LOCATION:
       return { ...state, location: action.data };
     default:
