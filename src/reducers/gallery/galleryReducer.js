@@ -14,7 +14,8 @@ const DEFAULT_PET = {
     primary: '',
     secondary: '',
     mixed: false
-  }
+  },
+  photos: [{ large: '' }]
 };
 
 const defaultGalleryState = {

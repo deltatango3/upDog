@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPets } from '../../actions/actionCreators';
-import { getAccessToken, getPets } from '../../reducers/rootReducer';
+import { getPets } from '../../reducers/rootReducer';
 import Gallery from '../Gallery/Gallery';
 import SearchFilterBar from '../SearchFilterBar/SearchFilterBar';
 
@@ -17,14 +17,11 @@ const styles = makeStyles({
 const Main = props => {
   const classes = styles();
   const dispatch = useDispatch();
-  const token = useSelector(state => getAccessToken(state));
   const pets = useSelector(state => getPets(state));
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchPets());
-    }
-  }, [token, dispatch]);
+    dispatch(fetchPets());
+  }, [dispatch]);
 
   return (
     <div className={classes.wrapper}>

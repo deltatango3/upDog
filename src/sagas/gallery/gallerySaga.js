@@ -1,13 +1,11 @@
-import { all, call, takeLatest, put, select } from 'redux-saga/effects';
+import { all, call, takeLatest, put } from 'redux-saga/effects';
 import { apiFetchPets, apiFetchPet } from '../../network/requests';
 import actions from '../../actions/actionTypes';
 import { setPets, setPet } from '../../actions/actionCreators';
-import { getAccessToken } from '../../reducers/rootReducer';
 
 function* fetchPets(action) {
   try {
-    const token = yield select(getAccessToken);
-    const response = yield call(apiFetchPets, token, action.data);
+    const response = yield call(apiFetchPets, action.data);
     const pets = response.data.animals;
     yield put(setPets(pets));
   } catch (error) {
@@ -17,8 +15,7 @@ function* fetchPets(action) {
 
 function* fetchPet(action) {
   try {
-    const token = yield select(getAccessToken);
-    const response = yield call(apiFetchPet, token, action.data);
+    const response = yield call(apiFetchPet, action.data);
     const pet = response.data.animal;
     yield put(setPet(pet));
   } catch (error) {
