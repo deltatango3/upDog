@@ -11,12 +11,7 @@ const SearchFilterBar = () => {
   const submitDisabled = !location;
 
   const onSubmit = () => {
-    const parameters = {
-      location,
-      // temporary type until we can have more types
-      type: 'dog'
-    };
-    dispatch(fetchPets(parameters));
+    dispatch(fetchPets());
   };
 
   return (

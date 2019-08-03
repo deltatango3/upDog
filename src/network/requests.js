@@ -2,8 +2,16 @@ import axios from 'axios';
 import config from './config';
 import urls from './urls';
 
-const DEFAULT_PARAMETERS = {
-  type: 'dog'
+const getQueryParams = parameters => {
+  const { type, page, location } = parameters;
+  const params = {
+    type,
+    page
+  };
+
+  if (location) params.location = location;
+
+  return params;
 };
 
 export const getToken = () => {
@@ -20,11 +28,12 @@ export const getToken = () => {
   });
 };
 
-export const apiFetchPets = (parameters = DEFAULT_PARAMETERS) => {
+export const apiFetchPets = parameters => {
+  const params = getQueryParams(parameters);
   return axios({
     url: urls.pets,
     method: `get`,
-    params: parameters,
+    params,
     headers: {
       Authorization: 'Bearer ' + config.token
     }

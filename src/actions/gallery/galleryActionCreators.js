@@ -1,8 +1,7 @@
 import actions from '../actionTypes';
 
-export const fetchPets = data => ({
-  type: actions.FETCH_PETS,
-  data
+export const fetchPets = () => ({
+  type: actions.FETCH_PETS
 });
 
 export const setPets = data => ({
@@ -22,4 +21,17 @@ export const setPet = data => ({
 
 export const clearPet = () => ({
   type: actions.CLEAR_PET
+});
+
+export const setPage = data => ({
+  type: actions.SET_PAGE,
+  data
+});
+
+export const setGalleryIsLoading = () => ({
+  type: actions.SET_GALLERY_IS_LOADING
+});
+
+export const setGalleryIsDoneLoading = () => ({
+  type: actions.SET_GALLERY_IS_DONE_LOADING
 });
