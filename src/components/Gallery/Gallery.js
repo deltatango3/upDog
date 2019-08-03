@@ -13,7 +13,9 @@ const Gallery = props => {
   const classes = styles();
 
   const getPetCards = () =>
-    props.pets.map(pet => <PetCard key={pet.id} pet={pet} />);
+    props.pets.map(pet => (
+      <PetCard key={pet.id} pet={pet} history={props.history} />
+    ));
 
   return <div className={classes.gallery}>{getPetCards()}</div>;
 };

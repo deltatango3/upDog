@@ -7,6 +7,7 @@ import {
   CardMedia,
   Grid
 } from '@material-ui/core';
+import ROUTE_URLS from '../../routes/routeUrls';
 
 const styles = makeStyles(theme => ({
   card: {
@@ -34,8 +35,12 @@ const PetCard = props => {
       ? props.pet.photos[0].large
       : `https://via.placeholder.com/150`;
 
+  const onPetCardClick = async () => {
+    props.history.push(`${ROUTE_URLS.PET}/${props.pet.id}`);
+  };
+
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} onClick={onPetCardClick}>
       <CardMedia className={classes.image} image={photo} component='img' />
       <CardContent>
         <Grid container justify='space-between' direction='column'>

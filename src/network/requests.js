@@ -20,26 +20,23 @@ export const getToken = () => {
   });
 };
 
-export const getAnimals = token => {
-  return axios({
-    url: urls.pets,
-    method: `get`,
-    params: {
-      type: 'dog'
-    },
-    headers: {
-      Authorization: 'Bearer ' + token
-    }
-  });
-};
-
-export const apiFetchPets = (token, parameters = DEFAULT_PARAMETERS) => {
+export const apiFetchPets = (parameters = DEFAULT_PARAMETERS) => {
   return axios({
     url: urls.pets,
     method: `get`,
     params: parameters,
     headers: {
-      Authorization: 'Bearer ' + token
+      Authorization: 'Bearer ' + config.token
+    }
+  });
+};
+
+export const apiFetchPet = id => {
+  return axios({
+    url: urls.pet(id),
+    method: `get`,
+    headers: {
+      Authorization: 'Bearer ' + config.token
     }
   });
 };
