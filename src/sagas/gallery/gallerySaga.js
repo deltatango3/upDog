@@ -1,13 +1,26 @@
-import { all, call, takeLatest, put } from 'redux-saga/effects';
+import { all, call, takeLatest, put, select } from 'redux-saga/effects';
 import { apiFetchPets, apiFetchPet } from '../../network/requests';
 import actions from '../../actions/actionTypes';
-import { setPets, setPet } from '../../actions/actionCreators';
+import {
+  setPets,
+  setPet,
+  setGalleryIsLoading,
+  setGalleryIsDoneLoading
+} from '../../actions/actionCreators';
+import { getPage, getLocation, getType } from '../../reducers/rootReducer';
 
-function* fetchPets(action) {
+function* fetchPets() {
   try {
-    const response = yield call(apiFetchPets, action.data);
+    // get the next page
+    yield put(setGalleryIsLoading());
+    const page = yield select(getPage);
+    const location = yield select(getLocation);
+    const type = yield select(getType);
+    const parameters = { page, location, type };
+    const response = yield call(apiFetchPets, parameters);
     const pets = response.data.animals;
     yield put(setPets(pets));
+    yield put(setGalleryIsDoneLoading());
   } catch (error) {
     console.log(error.message);
   }

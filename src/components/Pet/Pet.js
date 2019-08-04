@@ -23,8 +23,6 @@ const Pet = () => {
     };
   }, [dispatch]);
 
-  console.log(pet);
-
   const getBreed = () => {
     if (pet.breeds.secondary) {
       return `${pet.breeds.primary} & ${pet.breeds.secondary}`;
@@ -60,7 +58,7 @@ const Pet = () => {
       <Grid item>
         <Typography>{pet.description}</Typography>
       </Grid>
-      {/* <div>{getPhotos()}</div> */}
+      <div>{getPhotos()}</div>
     </Grid>
   );
 };
