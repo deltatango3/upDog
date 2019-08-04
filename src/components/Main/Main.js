@@ -2,14 +2,9 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPets } from '../../actions/actionCreators';
-import {
-  getPets,
-  getPage,
-  getIsLoadingState
-} from '../../reducers/rootReducer';
+import { getPets, getPage } from '../../reducers/rootReducer';
 import Gallery from '../Gallery/Gallery';
 import SearchFilterBar from '../SearchFilterBar/SearchFilterBar';
-import Loading from '../Loading/Loading';
 
 const styles = makeStyles({
   wrapper: {

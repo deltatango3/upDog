@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import PetCard from '../PetCard/PetCard';
@@ -30,7 +30,7 @@ const Gallery = props => {
     };
   };
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
       document.documentElement.offsetHeight
@@ -38,7 +38,7 @@ const Gallery = props => {
       const nextPage = page + 1;
       dispatch(setPage(nextPage));
     }
-  };
+  }, [dispatch, page]);
 
   useEffect(() => {
     window.addEventListener('scroll', debounce(handleScroll, 500));
